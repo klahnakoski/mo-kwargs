@@ -13,7 +13,7 @@ from __future__ import unicode_literals
 
 from collections import Mapping
 
-from mo_dots import zip as dict_zip
+from mo_dots import zip as dict_zip, get_logger
 
 
 def override(func):
@@ -89,16 +89,15 @@ def override(func):
                 packed = params_pack(params, kwargs, dict_zip(params, args), defaults)
                 return func(**packed)
         except TypeError, e:
-            from mo_logs import Log
             if e.message.find("takes at least") >= 0:
                 missing = [p for p in params if str(p) not in packed]
-                Log.error(
+                get_logger().error(
                     "Problem calling {{func_name}}:  Expecting parameter {{missing}}",
                     func_name=func.func_name,
                     missing=missing,
                     stack_depth=1
                 )
-            Log.error("Unexpected", e)
+            get_logger().error("Unexpected", e)
     return wrapper
 
 
