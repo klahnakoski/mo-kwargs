@@ -104,6 +104,8 @@ def override(func):
 def params_pack(params, *args):
     settings = {}
     for a in args:
+        if a == None:
+            continue
         for k, v in a.items():
             k = unicode(k)
             if k in settings:
