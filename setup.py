@@ -44,7 +44,7 @@ def find_packages(where='.', lib_prefix='', exclude=()):
 
 setup(
     name='mo-kwargs',
-    version="1.0.17049",
+    version="1.0.17085",
     description='More KWARGS! Let call parameters override kwargs',
     long_description=long_desc,
     author='Kyle Lahnakoski',
@@ -52,7 +52,7 @@ setup(
     url='https://github.com/klahnakoski/mo-kwargs',
     license='MPL 2.0',
     packages=find_packages(".", lib_prefix=""),
-    install_requires=[],
+    install_requires=["mo_dots"],
     include_package_data=True,
     zip_safe=False,
     classifiers=[  #https://pypi.python.org/pypi?%3Aaction=list_classifiers
