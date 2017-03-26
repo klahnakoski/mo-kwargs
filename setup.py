@@ -44,7 +44,7 @@ def find_packages(where='.', lib_prefix='', exclude=()):
 
 setup(
     name='mo-kwargs',
-    version="1.0.17049",
+    version="1.0.17056",
     description='More KWARGS! Let call parameters override kwargs',
     long_description=long_desc,
     author='Kyle Lahnakoski',
