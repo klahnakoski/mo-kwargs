@@ -13,11 +13,9 @@ Extensive use of dependency injection, plus managing the configuration for each 
 
 We decorate the `login()` function with `@override`. In this case, `username` is a required parameter, and `password` will default to `None`. The kwargs parameter should always default to `None` so that it's not required.
 
-```python
 		@override
 		def login(username, password=None, kwargs=None):
 			pass
-```
 
 Define some `dicts` for use with our `kwargs` parameter:
 
