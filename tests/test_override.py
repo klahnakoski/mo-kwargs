@@ -11,6 +11,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import unicode_literals
 
+from collections import Mapping
+
 from mo_dots import unwrap
 from mo_testing.fuzzytestcase import FuzzyTestCase
 
@@ -44,6 +46,16 @@ class TestOverride(FuzzyTestCase):
         self.assertEqual(len(result), 2)
         self.assertEqual(result["required"], 1)
         self.assertEqual(result["optional"], 3)
+
+    def test_no_param_args(self):
+        result = no_param(kw)
+        self.assertIsInstance(result, Mapping)
+        self.assertEqual(len(result.keys()), 0)
+
+    def test_no_param_kwargs(self):
+        result = no_param(kwargs=kw)
+        self.assertIsInstance(result, Mapping)
+        self.assertEqual(len(result.keys()), 0)
 
     def test_nothing_w_nothing(self):
         result = nothing()
@@ -92,8 +104,12 @@ class TestOverride(FuzzyTestCase):
         result = required(required=3, optional=3)
         self.assertEqual(result, {"required": 3, "optional": 3})
 
-    def test_required_w_required_and_kwargs(self):
+    def test_required_w_kwargs(self):
         result = required(kwargs=kw)
+        self.assertEqual(result, kw)
+
+    def test_required_w_default_kwargs(self):
+        result = required(kw)
         self.assertEqual(result, kw)
 
     def test_required_w_require_and_kwargs(self):
@@ -229,8 +245,12 @@ class TestOverride(FuzzyTestCase):
         result = TestObject(required=0).required_(required=3, optional=3)
         self.assertEqual(result, {"required": 3, "optional": 3})
 
-    def test_object_required_w_required_and_kwargs(self):
+    def test_object_required_w_kwargs(self):
         result = TestObject(required=0).required_(kwargs=kw)
+        self.assertEqual(result, kw)
+
+    def test_object_required_w_default_kwargs(self):
+        result = TestObject(required=0).required_(kw)
         self.assertEqual(result, kw)
 
     def test_object_required_w_require_and_kwargs(self):
@@ -301,6 +321,11 @@ def basic(required, optional=3):
 
 @override
 def nothing(kwargs=None):
+    return kwargs
+
+
+@override
+def no_param(*args, **kwargs):
     return kwargs
 
 

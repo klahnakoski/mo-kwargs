@@ -40,7 +40,6 @@ def override(func):
     else:
         defaults = {k: v for k, v in zip(reversed(params), reversed(get_function_defaults(func)))}
 
-
     def raise_error(e, packed):
         e = Except.wrap(e)
         if e.message.startswith(func_name) and "takes at least" in e:
@@ -53,7 +52,6 @@ def override(func):
                 stack_depth=1
             )
         get_logger().error("Error dispatching call", e)
-
 
     if "kwargs" not in params:
         # WE ASSUME WE ARE ONLY ADDING A kwargs PARAMETER TO SOME REGULAR METHOD
