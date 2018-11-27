@@ -1,18 +1,21 @@
 {
-    "name": "mo-kwargs",
-    "version": "2.18.18240",
-    "description": "More KWARGS! Let call parameters override kwargs",
     "author": "Kyle Lahnakoski",
     "author_email": "kyle@lahnakoski.com",
-    "url": "https://github.com/klahnakoski/mo-kwargs",
-    "license": "MPL 2.0",
-    "install_requires": ["mo-dots>=2.18.18240", "mo-future>=2.18.18240"],
-    "include_package_data": true,
-    "zip_safe": false,
     "classifiers": [
         "Development Status :: 4 - Beta",
         "Topic :: Software Development :: Libraries",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
-    ]
+    ],
+    "description": "More KWARGS! Let call parameters override kwargs",
+    "include_package_data": true,
+    "install_requires": ["mo-dots>=2.20.18318", "mo-future"],
+    "license": "MPL 2.0",
+    "long_description": "\nMore KWARGS!\n============\n\nMotivation\n----------\n\nExtensive use of dependency injection, plus managing the configuration for each of the components being injected, can result in some spectacularly complex system configuration. One way to reduce the complexity is to use configuration templates that contain useful defaults, and simply overwrite the properties that need to be changed for the new configuration. `@override` has been created to provide this templating system for Python function calls (primarily class constructors).  \n\n`@override` will decorate a function to accept a `kwargs` parameter which is just like `**kwargs`, but the call parameters will override the properties in `kwargs`, rather than raise duplicate key exceptions.\n\n**Example**\n\nWe decorate the `login()` function with `@override`. In this case, `username` is a required parameter, and `password` will default to `None`. The kwargs parameter should always default to `None` so that it's not required.\n\n\t\t@override\n\t\tdef login(username, password=None, kwargs=None):\n\t\t\tpass\n\nDefine some `dicts` for use with our `kwargs` parameter:\n\n\t\tcreds = {\"userame\": \"ekyle\", \"password\": \"password123\"}\n\t\talt_creds = {\"username\": \"klahnakoski\"}\n\n\nThe simplest case is when we use kwargs with no overrides\n\n\t\tlogin(kwargs=creds)\n\t\t# SAME AS\n\t\tlogin(**creds)\n\t\t# SAME AS\n\t\tlogin(username=\"ekyle\", password=\"password123\")\n\nYou may override any property in kwargs: In this case it is `password`\n\n\t\tlogin(password=\"123\", kwargs=creds)\n\t\t# SAME AS\n\t\tlogin(username=\"ekyle\", password=\"123\")\n\nThere is no problem with overriding everything in `kwargs`:\n\n\t\tlogin(username=\"klahnakoski\", password=\"asd213\", kwargs=creds)\n\t\t# SAME AS\n\t\tlogin(username=\"klahnakoski\", password=\"asd213\")\n\nYou may continue to use `**kwargs`; which provides a way to overlay one parameter template (`creds`) with another (`alt_creds`)\n\n\t\tlogin(kwargs=creds, **alt_creds)\n\t\t# SAME AS\n\t\tlogin(username=\"klahnakoski\", password=\"password123\")\n\n\n\n",
+    "long_description_content_type": "text/markdown",
+    "name": "mo-kwargs",
+    "packages": ["mo_kwargs"],
+    "url": "https://github.com/klahnakoski/mo-kwargs",
+    "version": "2.26.18331",
+    "zip_safe": false
 }
