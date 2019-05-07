@@ -1,6 +1,13 @@
 
 # More KWARGS!
 
+|Branch      |Status   |
+|------------|---------|
+|master      | [![Build Status](https://travis-ci.org/klahnakoski/mo-kwargs.svg?branch=master)](https://travis-ci.org/klahnakoski/mo-kwargs) |
+|dev         | [![Build Status](https://travis-ci.org/klahnakoski/mo-kwargs.svg?branch=dev)](https://travis-ci.org/klahnakoski/mo-kwargs)  [![Coverage Status](https://coveralls.io/repos/github/klahnakoski/mo-kwargs/badge.svg?branch=dev)](https://coveralls.io/github/klahnakoski/mo-kwargs?branch=dev)  |
+
+
+
 ## Motivation
 
 Extensive use of dependency injection, plus managing the configuration for each of the components being injected, can result in some spectacularly complex system configuration. One way to reduce the complexity is to use configuration templates that contain useful defaults, and then overwrite the properties that need to be changed for the desired configuration. 
