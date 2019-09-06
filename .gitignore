@@ -1,3 +1,6 @@
 /build
 /dist
 /mo_kwargs.egg-info
+/mo_kwargs/.svn
+/.idea
+/mo-kwargs.iml
