@@ -9,7 +9,7 @@
     ],
     "description": "More KWARGS! Let call parameters override kwargs",
     "include_package_data": true,
-    "install_requires": ["mo-dots>=3.33.20028", "mo-future>=3.32.20028", "mo-logs>=3.38.20029"],
+    "install_requires": ["mo-dots>=3.47.20042", "mo-future>=3.47.20042", "mo-logs>=3.47.20042"],
     "license": "MPL 2.0",
     "long_description": {
         "$concat": [
@@ -121,6 +121,6 @@
     "name": "mo-kwargs",
     "packages": ["mo_kwargs"],
     "url": "https://github.com/klahnakoski/mo-kwargs",
-    "version": "3.38.20029",
+    "version": "3.47.20042",
     "zip_safe": false
 }
