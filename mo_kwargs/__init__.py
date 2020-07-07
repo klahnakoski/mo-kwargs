@@ -11,7 +11,7 @@ from __future__ import absolute_import, division, unicode_literals
 
 from functools import update_wrapper
 
-from mo_dots import get_logger, is_data, wrap, zip as dict_zip, set_default
+from mo_dots import get_logger, is_data, to_data, zip as dict_zip, set_default
 from mo_future import (
     get_function_arguments,
     get_function_defaults,
@@ -23,7 +23,7 @@ from mo_logs import Except
 KWARGS = str("kwargs")
 
 
-def override(kwargs=KWARGS):
+def override(kwargs=None):
     """
     THIS DECORATOR WILL PUT ALL PARAMETERS INTO THE `kwargs` PARAMETER AND
     THEN PUT ALL `kwargs` PARAMETERS INTO THE FUNCTION PARAMETERS. THIS HAS
@@ -139,7 +139,7 @@ def override(kwargs=KWARGS):
         for a in args:
             for k, v in a.items():
                 settings[str(k)] = v
-        settings[kwargs] = wrap(settings)
+        settings[kwargs] = to_data(settings)
 
         if params and params[0] in ("self", "cls"):
             s = settings.get(params[0])
@@ -160,8 +160,11 @@ def override(kwargs=KWARGS):
             )
 
     if is_text(kwargs):
-        # SIMPLE VERSION @override
-        return output
-    else:
         # COMPLEX VERSION @override(kwargs="other")
-        return output(func=kwargs)
+        return output
+    elif kwargs == None:
+        raise NotImplementedError("use @override without calling")
+    else:
+        # SIMPLE VERSION @override
+        func, kwargs = kwargs, KWARGS
+        return output(func)

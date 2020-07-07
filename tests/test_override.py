@@ -322,7 +322,7 @@ class TestOverride(FuzzyTestCase):
         self.assertRaises("Problem calling ", oops_self, test=1)
 
 
-@override()
+@override
 def basic(required, optional=3):
     return {"required": required, "optional": optional}
 
