@@ -1,2 +1,3 @@
 mo-testing>3
-mo_times
+mo-times
+mo-json
