@@ -3,8 +3,8 @@
 
 |Branch      |Status   |
 |------------|---------|
-|master      | [![Build Status](https://travis-ci.com/klahnakoski/mo-kwargs.svg?branch=master)](https://travis-ci.com/klahnakoski/mo-kwargs) |
-|dev         | [![Build Status](https://travis-ci.com/klahnakoski/mo-kwargs.svg?branch=dev)](https://travis-ci.com/klahnakoski/mo-kwargs)  [![Coverage Status](https://coveralls.io/repos/github/klahnakoski/mo-kwargs/badge.svg?branch=dev)](https://coveralls.io/github/klahnakoski/mo-kwargs?branch=dev)  |
+|master      | [![Build Status](https://app.travis-ci.com/klahnakoski/mo-kwargs.svg?branch=master)](https://travis-ci.com/github/klahnakoski/mo-kwargs) |
+|dev         | [![Build Status](https://app.travis-ci.com/klahnakoski/mo-kwargs.svg?branch=dev)](https://travis-ci.com/github/klahnakoski/mo-kwargs)  [![Coverage Status](https://coveralls.io/repos/github/klahnakoski/mo-kwargs/badge.svg?branch=dev)](https://coveralls.io/github/klahnakoski/mo-kwargs?branch=dev)  |
 
 
 
