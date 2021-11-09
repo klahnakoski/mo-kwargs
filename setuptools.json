@@ -11,8 +11,9 @@
         "Programming Language :: Python :: 3.9"
     ],
     "description": "More KWARGS! Let call parameters override kwargs",
+    "extras_require": {"tests": ["mo-testing", "mo-times", "mo-json", "mo-threads"]},
     "include_package_data": true,
-    "install_requires": ["mo-dots==5.22.21182", "mo-future==5.17.21182"],
+    "install_requires": ["mo-dots==7.4.21313", "mo-future==6.2.21303"],
     "license": "MPL 2.0",
     "long_description": {
         "$concat": [
@@ -21,8 +22,8 @@
             "",
             "|Branch      |Status   |",
             "|------------|---------|",
-            "|master      | [![Build Status](https://travis-ci.org/klahnakoski/mo-kwargs.svg?branch=master)](https://travis-ci.org/klahnakoski/mo-kwargs) |",
-            "|dev         | [![Build Status](https://travis-ci.org/klahnakoski/mo-kwargs.svg?branch=dev)](https://travis-ci.org/klahnakoski/mo-kwargs)  [![Coverage Status](https://coveralls.io/repos/github/klahnakoski/mo-kwargs/badge.svg?branch=dev)](https://coveralls.io/github/klahnakoski/mo-kwargs?branch=dev)  |",
+            "|master      | [![Build Status](https://app.travis-ci.com/klahnakoski/mo-kwargs.svg?branch=master)](https://travis-ci.com/github/klahnakoski/mo-kwargs) |",
+            "|dev         | [![Build Status](https://app.travis-ci.com/klahnakoski/mo-kwargs.svg?branch=dev)](https://travis-ci.com/github/klahnakoski/mo-kwargs)  [![Coverage Status](https://coveralls.io/repos/github/klahnakoski/mo-kwargs/badge.svg?branch=dev)](https://coveralls.io/github/klahnakoski/mo-kwargs?branch=dev)  |",
             "",
             "",
             "",
@@ -99,7 +100,7 @@
             "         ",
             "        login(kwargs=creds)",
             "        # SAME AS",
-            "        login(**creds)",
+            "        login(username=creds.username, password=creds.password)",
             "",
             "## Package all parameters",
             "",
@@ -124,6 +125,6 @@
     "name": "mo-kwargs",
     "packages": ["mo_kwargs"],
     "url": "https://github.com/klahnakoski/mo-kwargs",
-    "version": "5.23.21182",
+    "version": "7.4.21313",
     "zip_safe": false
 }
