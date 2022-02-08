@@ -1,22 +1,31 @@
 
 # More KWARGS!
 
-|Branch      |Status   |
-|------------|---------|
-|master      | [![Build Status](https://app.travis-ci.com/klahnakoski/mo-kwargs.svg?branch=master)](https://travis-ci.com/github/klahnakoski/mo-kwargs) |
-|dev         | [![Build Status](https://app.travis-ci.com/klahnakoski/mo-kwargs.svg?branch=dev)](https://travis-ci.com/github/klahnakoski/mo-kwargs)  [![Coverage Status](https://coveralls.io/repos/github/klahnakoski/mo-kwargs/badge.svg?branch=dev)](https://coveralls.io/github/klahnakoski/mo-kwargs?branch=dev)  |
+Object destructuring of function parameters for Python!
 
+[![PyPI Latest Release](https://img.shields.io/pypi/v/mo-kwargs.svg)](https://pypi.org/project/mo-kwargs/)
+[![Build Status](https://app.travis-ci.com/klahnakoski/mo-kwargs.svg?branch=master)](https://travis-ci.com/github/klahnakoski/mo-kwargs)
+ [![Coverage Status](https://coveralls.io/repos/github/klahnakoski/mo-kwargs/badge.svg?branch=dev)](https://coveralls.io/github/klahnakoski/mo-kwargs?branch=dev)
+[![Downloads](https://pepy.tech/badge/mo-kwargs)](https://pepy.tech/project/mo-kwargs)
 
 
 ## Motivation
 
-Extensive use of dependency injection, plus managing the configuration for each of the components being injected, can result in some spectacularly complex system configuration. One way to reduce the complexity is to use configuration templates that contain useful defaults, and then overwrite the properties that need to be changed for the desired configuration. 
+Javascript has [object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#object_destructuring), and it can be used for function parameters. This has a couple of benefts over Python's keyword arguments:
 
-`@override` has been created to provide this templating system for Python function calls. It is mostly used for class constructors, but any method can benefit. The `@overrides` decorator adds a `kwargs` parameter which can be given a template of default parameters; but unlike `**kwargs`, it will not raise duplicate key exceptions.
+* Extra caller parameters are ignored (eg `f({a, b, c})`)
+* Duplicate parameters are handled elegantly (eg `f({a, a})`) 
+
+The `mo-kwargs` library provides this functionality with the `@override` decorator, with additional benefits:
+ 
+ * required parameters throw an error if missing, just like regular Python
+ * all parameters, even ones not in the argument list, are passed in the optional `kwargs` parameter 
+ 
+The `@override` decorator adds a `kwargs` argument which can be passed a dict of call parameters; but unlike `**kwargs`, it will not raise duplicate key exceptions.
 
 ## Provide default values
 
-We decorate the `login()` function with `@override`. In this case, `username` is a required parameter, and `password` will default to `None`. 
+We decorate the `login()` function with `@override`. `username` is a required parameter, and `password` will default to `None`. 
 
         @override
         def login(username, password=None):
