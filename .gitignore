@@ -6,4 +6,5 @@
 /mo-kwargs.iml
 .svn
 /vendor
-setup.py
+./setup.py
+
