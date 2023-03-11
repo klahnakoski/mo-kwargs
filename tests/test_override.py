@@ -166,10 +166,8 @@ class TestOverride(FuzzyTestCase):
         self.assertEqual(len(result["kwargs"]["kwargs"]), 3)
 
     def test_object_not_enough_parameters(self):
-        self.assertRaises(
-            'Expecting parameter ["required"], given ["self", "optional", "kwargs"]',
-            lambda: TestObject({}),
-        )
+        with self.assertRaises('Expecting parameter ["required"], given ["self", "optional", "kwargs"]'):
+            TestObject({})
 
     def test_object(self):
         result = TestObject(kw)
