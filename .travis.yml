@@ -25,12 +25,6 @@ jobs:
     before_install:
     - pip install wheel==0.37.1
     - pip install setuptools==45.2.0
-  - name: Python 3.10
-    dist: jammy
-    python: '3.10'
-    before_install:
-    - pip install wheel==0.37.1
-    - pip install setuptools==45.2.0
   - name: Python 3.11
     dist: jammy
     python: '3.11'
