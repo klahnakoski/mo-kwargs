@@ -15,6 +15,6 @@ setup(
     name='mo-kwargs',
     packages=["mo_kwargs"],
     url='https://github.com/klahnakoski/mo-kwargs',
-    version='7.434.23235',
+    version='7.434.23241',
     zip_safe=False
 )
