@@ -1,10 +1,10 @@
 hjson==3.1.0
 mo-collections==5.454.23305
-mo-dots==8.514.24030
+mo-dots==8.515.24030
 mo-future==7.507.24028
 mo-imports==5.509.24030
 mo-json==6.451.23305
-mo-kwargs==7.450.23304
+mo-kwargs==7.515.24030
 mo-logs==8.451.23305
 mo-math==7.450.23304
 mo-testing==7.454.23305
