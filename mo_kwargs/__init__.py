@@ -46,19 +46,14 @@ def override(kwargs=None):
         if not get_function_defaults(func):
             defaults = {}
         else:
-            defaults = {
-                k: v
-                for k, v in zip(reversed(params), reversed(get_function_defaults(func)))
-            }
+            defaults = {k: v for k, v in zip(reversed(params), reversed(get_function_defaults(func)))}
 
         def raise_error(e, a, k):
             packed = k.copy()
             packed.update(dict(zip(params, a)))
             err = text(e)
             if func_name in err and (
-                "takes at least" in err
-                or "takes exactly " in err
-                or "required positional argument" in err
+                "takes at least" in err or "takes exactly " in err or "required positional argument" in err
             ):
                 missing = [p for p in params if str(p) not in packed]
                 given = [p for p in params if str(p) in packed]
@@ -66,8 +61,7 @@ def override(kwargs=None):
                     raise e
                 else:
                     get_logger().error(
-                        "Problem calling {{func_name}}:  Expecting parameter"
-                        " {{missing}}, given {{given}}",
+                        "Problem calling {{func_name}}:  Expecting parameter {{missing}}, given {{given}}",
                         func_name=func_name,
                         missing=missing,
                         given=given,
@@ -81,9 +75,7 @@ def override(kwargs=None):
             def wo_kwargs(*given_args, **given_kwargs):
                 settings = given_kwargs.get(kwargs, {})
                 ordered_params = dict(zip(params, given_args))
-                a, k = params_pack(
-                    params, defaults, settings, given_kwargs, ordered_params
-                )
+                a, k = params_pack(params, defaults, settings, given_kwargs, ordered_params)
                 try:
                     return func(*a, **k)
                 except TypeError as e:
@@ -94,32 +86,16 @@ def override(kwargs=None):
         elif func_name in ("__init__", "__new__") or params[0] in ("self", "cls"):
 
             def w_bound_method(*given_args, **given_kwargs):
-                if (
-                    len(given_args) == 2
-                    and len(given_kwargs) == 0
-                    and is_data(given_args[1])
-                ):
+                if len(given_args) == 2 and len(given_kwargs) == 0 and is_data(given_args[1]):
                     # ASSUME SECOND UNNAMED PARAM IS kwargs
-                    a, k = params_pack(
-                        params,
-                        defaults,
-                        given_args[1],
-                        {params[0]: given_args[0]},
-                        given_kwargs,
-                    )
+                    a, k = params_pack(params, defaults, given_args[1], {params[0]: given_args[0]}, given_kwargs,)
                 elif kwargs in given_kwargs and is_data(given_kwargs[kwargs]):
                     # PUT args INTO given_kwargs
                     a, k = params_pack(
-                        params,
-                        defaults,
-                        given_kwargs[kwargs],
-                        dict(zip(params, given_args)),
-                        given_kwargs,
+                        params, defaults, given_kwargs[kwargs], dict(zip(params, given_args)), given_kwargs,
                     )
                 else:
-                    a, k = params_pack(
-                        params, defaults, dict(zip(params, given_args)), given_kwargs
-                    )
+                    a, k = params_pack(params, defaults, dict(zip(params, given_args)), given_kwargs)
                 try:
                     return func(*a, **k)
                 except TypeError as e:
@@ -135,27 +111,17 @@ def override(kwargs=None):
         else:
 
             def w_kwargs(*given_args, **given_kwargs):
-                if (
-                    len(given_args) == 1
-                    and len(given_kwargs) == 0
-                    and is_data(given_args[0])
-                ):
+                if len(given_args) == 1 and len(given_kwargs) == 0 and is_data(given_args[0]):
                     # ASSUME SINGLE PARAMETER IS kwargs
                     a, k = params_pack(params, defaults, given_args[0])
                 elif kwargs in given_kwargs and is_data(given_kwargs[kwargs]):
                     # PUT given_args INTO given_kwargs
                     a, k = params_pack(
-                        params,
-                        defaults,
-                        given_kwargs[kwargs],
-                        dict(zip(params, given_args)),
-                        given_kwargs,
+                        params, defaults, given_kwargs[kwargs], dict(zip(params, given_args)), given_kwargs,
                     )
                 else:
                     # PULL kwargs OUT INTO PARAMS
-                    a, k = params_pack(
-                        params, defaults, dict(zip(params, given_args)), given_kwargs
-                    )
+                    a, k = params_pack(params, defaults, dict(zip(params, given_args)), given_kwargs)
                 try:
                     return func(*a, **k)
                 except TypeError as e:
