@@ -1,11 +1,11 @@
-# Tests pass with these versions 2024-01-31T03:50:27Z
+# Tests pass with these versions 2024-01-31T03:50:29Z
 hjson==3.1.0
 mo-collections==5.454.23305
 mo-dots==8.519.24031
 mo-future==7.519.24031
 mo-imports==5.519.24031
 mo-json==6.451.23305
-mo-kwargs==7.519.24031
+mo-kwargs==7.450.23304
 mo-logs==8.451.23305
 mo-math==7.450.23304
 mo-testing==7.454.23305
