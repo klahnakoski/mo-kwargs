@@ -5,7 +5,7 @@ mo-dots==9.527.24034
 mo-future==7.520.24032
 mo-imports==7.527.24034
 mo-json==6.522.24033
-mo-kwargs==7.527.24034
+mo-kwargs==7.520.24032
 mo-logs==8.522.24033
 mo-math==7.521.24032
 mo-testing==7.523.24033
