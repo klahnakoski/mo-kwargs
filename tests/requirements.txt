@@ -1,4 +1,4 @@
-mo-testing
-mo-times
-mo-json
-mo-threads
+mo-testing>=7.523.24033
+mo-times>=5.522.24033
+mo-json>=6.522.24033
+mo-threads>=6.522.24033
