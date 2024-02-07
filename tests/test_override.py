@@ -318,6 +318,10 @@ class TestOverride(FuzzyTestCase):
     def test_call_missing_self(self):
         self.assertRaises("Problem calling ", oops_self, test=1)
 
+    def test_complex_includes_kwargs(self):
+        result = TestObject(required=0).complex(1, 2, c=3, d=4)
+        self.assertEqual(result, {"a": 1, "b": 2, "c": 3, "d": 4})
+
 
 @override
 def basic(required, optional=3):
@@ -382,3 +386,7 @@ class TestObject(object):
     @override
     def kwargs_(self, kwargs=None, **kwargs_):
         return {"kwargs_": kwargs_, "kwargs": kwargs}
+
+    @override
+    def complex(self, a, b, *, c=None, d=None, kwargs=None):
+        return kwargs

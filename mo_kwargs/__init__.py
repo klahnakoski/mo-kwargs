@@ -13,13 +13,6 @@ import sys
 from functools import update_wrapper
 
 from mo_dots import get_logger, is_data, to_data, is_many
-from mo_future import (
-    get_function_arguments,
-    get_function_defaults,
-    get_function_name,
-    text,
-    is_text,
-)
 
 KWARGS = str("kwargs")
 
@@ -41,22 +34,20 @@ def override(kwargs=None):
     """
 
     def output(func):
-        func_name = get_function_name(func)
-        params = get_function_arguments(func)
-        if not get_function_defaults(func):
-            defaults = {}
-        else:
-            defaults = {k: v for k, v in zip(reversed(params), reversed(get_function_defaults(func)))}
+        func_name = func.__name__
+        known_kwargs = get_function_arguments(func)[: func.__code__.co_argcount + func.__code__.co_kwonlyargcount]
+        known_args = known_kwargs[: func.__code__.co_argcount]
+        defaults = {k: v for k, v in zip(reversed(known_kwargs), reversed(func.__defaults__ or [])) if v is not None}
 
         def raise_error(e, a, k):
             packed = k.copy()
-            packed.update(dict(zip(params, a)))
-            err = text(e)
+            packed.update(dict(zip(known_kwargs, a)))
+            err = str(e)
             if func_name in err and (
                 "takes at least" in err or "takes exactly " in err or "required positional argument" in err
             ):
-                missing = [p for p in params if str(p) not in packed]
-                given = [p for p in params if str(p) in packed]
+                missing = [p for p in known_kwargs if str(p) not in packed]
+                given = [p for p in known_kwargs if str(p) in packed]
                 if not missing:
                     raise e
                 else:
@@ -70,12 +61,12 @@ def override(kwargs=None):
                     )
             raise e
 
-        if kwargs not in params:
+        if kwargs not in known_kwargs:
             # ADDING A kwargs PARAMETER TO SOME REGULAR METHOD
             def wo_kwargs(*given_args, **given_kwargs):
                 settings = given_kwargs.get(kwargs, {})
-                ordered_params = dict(zip(params, given_args))
-                a, k = params_pack(params, defaults, settings, given_kwargs, ordered_params)
+                ordered_params = dict(zip(known_args, given_args))
+                a, k = params_pack(known_kwargs, defaults, settings, given_kwargs, ordered_params)
                 try:
                     return func(*a, **k)
                 except TypeError as e:
@@ -83,19 +74,21 @@ def override(kwargs=None):
 
             return update_wrapper(wo_kwargs, func)
 
-        elif func_name in ("__init__", "__new__") or params[0] in ("self", "cls"):
+        elif func_name in ("__init__", "__new__") or known_kwargs[0] in ("self", "cls"):
 
             def w_bound_method(*given_args, **given_kwargs):
                 if len(given_args) == 2 and len(given_kwargs) == 0 and is_data(given_args[1]):
                     # ASSUME SECOND UNNAMED PARAM IS kwargs
-                    a, k = params_pack(params, defaults, given_args[1], {params[0]: given_args[0]}, given_kwargs,)
+                    a, k = params_pack(
+                        known_kwargs, defaults, given_args[1], {known_kwargs[0]: given_args[0]}, given_kwargs,
+                    )
                 elif kwargs in given_kwargs and is_data(given_kwargs[kwargs]):
                     # PUT args INTO given_kwargs
                     a, k = params_pack(
-                        params, defaults, given_kwargs[kwargs], dict(zip(params, given_args)), given_kwargs,
+                        known_kwargs, defaults, given_kwargs[kwargs], dict(zip(known_args, given_args)), given_kwargs,
                     )
                 else:
-                    a, k = params_pack(params, defaults, dict(zip(params, given_args)), given_kwargs)
+                    a, k = params_pack(known_kwargs, defaults, dict(zip(known_args, given_args)), given_kwargs)
                 try:
                     return func(*a, **k)
                 except TypeError as e:
@@ -113,15 +106,15 @@ def override(kwargs=None):
             def w_kwargs(*given_args, **given_kwargs):
                 if len(given_args) == 1 and len(given_kwargs) == 0 and is_data(given_args[0]):
                     # ASSUME SINGLE PARAMETER IS kwargs
-                    a, k = params_pack(params, defaults, given_args[0])
+                    a, k = params_pack(known_kwargs, defaults, given_args[0])
                 elif kwargs in given_kwargs and is_data(given_kwargs[kwargs]):
                     # PUT given_args INTO given_kwargs
                     a, k = params_pack(
-                        params, defaults, given_kwargs[kwargs], dict(zip(params, given_args)), given_kwargs,
+                        known_kwargs, defaults, given_kwargs[kwargs], dict(zip(known_args, given_args)), given_kwargs,
                     )
                 else:
                     # PULL kwargs OUT INTO PARAMS
-                    a, k = params_pack(params, defaults, dict(zip(params, given_args)), given_kwargs)
+                    a, k = params_pack(known_kwargs, defaults, dict(zip(known_args, given_args)), given_kwargs)
                 try:
                     return func(*a, **k)
                 except TypeError as e:
@@ -156,7 +149,7 @@ def override(kwargs=None):
         else:
             return ([], {k: settings[k] for k in params if k in settings})
 
-    if is_text(kwargs):
+    if isinstance(kwargs, str):
         # COMPLEX VERSION @override(kwargs="other")
         return output
     elif kwargs == None:
@@ -193,3 +186,7 @@ def _parse_traceback(tb):
         tb = tb.tb_next
     trace.reverse()
     return trace
+
+
+def get_function_arguments(func):
+    return func.__code__.co_varnames
