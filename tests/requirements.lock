@@ -1,7 +1,7 @@
-# Tests pass with these versions 2024-02-07
+# Tests pass with these versions 2024-02-15
 hjson==3.1.0
 mo-collections==5.522.24033
-mo-dots==9.541.24038
+mo-dots==9.543.24046
 mo-future==7.541.24038
 mo-imports==7.541.24038
 mo-json==6.522.24033
