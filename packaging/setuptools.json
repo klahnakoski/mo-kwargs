@@ -18,7 +18,7 @@
         "mo-threads>=6.522.24033"
     ]},
     "include_package_data": true,
-    "install_requires": ["mo-dots==9.547.24058"],
+    "install_requires": ["mo-dots==9.549.24062"],
     "license": "MPL 2.0",
     "long_description": {
         "$concat": [
@@ -28,7 +28,7 @@
             "Object destructuring of function parameters for Python!",
             "",
             "[![PyPI Latest Release](https://img.shields.io/pypi/v/mo-kwargs.svg)](https://pypi.org/project/mo-kwargs/)",
-            "[![Build Status](https://app.travis-ci.com/klahnakoski/mo-kwargs.svg?branch=master)](https://travis-ci.com/github/klahnakoski/mo-kwargs)",
+            " [![Build Status](https://github.com/klahnakoski/mo-kwargs/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/klahnakoski/mo-kwargs/actions/workflows/build.yml)",
             " [![Coverage Status](https://coveralls.io/repos/github/klahnakoski/mo-kwargs/badge.svg?branch=dev)](https://coveralls.io/github/klahnakoski/mo-kwargs?branch=dev)",
             "[![Downloads](https://pepy.tech/badge/mo-kwargs)](https://pepy.tech/project/mo-kwargs)",
             "",
@@ -139,6 +139,6 @@
     "name": "mo-kwargs",
     "packages": ["mo_kwargs"],
     "url": "https://github.com/klahnakoski/mo-kwargs",
-    "version": "7.547.24058",
+    "version": "7.550.24062",
     "zip_safe": false
 }
