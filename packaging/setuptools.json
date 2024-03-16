@@ -14,11 +14,11 @@
     ],
     "description": "Object destructuring of function parameters for Python!",
     "extras_require": {"tests": [
-        "mo-testing>=7.559.24071",   "mo-times>=5.556.24070",    "mo-json>=6.561.24073",
-        "mo-threads>=6.556.24070"
+        "mo-testing>=7.562.24075",   "mo-times>=5.562.24075",    "mo-json>=6.562.24075",
+        "mo-threads>=6.562.24075"
     ]},
     "include_package_data": true,
-    "install_requires": ["mo-dots==9.563.24076"],
+    "install_requires": ["mo-dots==9.564.24076"],
     "license": "MPL 2.0",
     "long_description": {
         "$concat": [
@@ -139,6 +139,6 @@
     "name": "mo-kwargs",
     "packages": ["mo_kwargs"],
     "url": "https://github.com/klahnakoski/mo-kwargs",
-    "version": "7.563.24076",
+    "version": "7.564.24076",
     "zip_safe": false
 }
