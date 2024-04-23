@@ -1,8 +1,8 @@
-# Tests pass with these versions 2024-04-22
+# Tests pass with these versions 2024-04-23
 # pip install --no-deps -r tests/requirements.lock
 hjson==3.1.0
 mo-collections==5.584.24095
-mo-dots==9.596.24113
+mo-dots==9.600.24114
 mo-future==7.584.24095
 mo-imports==7.584.24095
 mo-json==6.589.24111
