@@ -18,7 +18,7 @@
         "mo-threads>=6.589.24111"
     ]},
     "include_package_data": true,
-    "install_requires": ["mo-dots==9.602.24115"],
+    "install_requires": ["mo-dots==9.603.24115"],
     "license": "MPL 2.0",
     "long_description": {
         "$concat": [
@@ -139,6 +139,6 @@
     "name": "mo-kwargs",
     "packages": ["mo_kwargs"],
     "url": "https://github.com/klahnakoski/mo-kwargs",
-    "version": "7.602.24115",
+    "version": "7.603.24115",
     "zip_safe": false
 }
