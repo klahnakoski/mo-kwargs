@@ -13,13 +13,14 @@ from __future__ import unicode_literals
 
 from mo_dots import unwrap
 from mo_future import Mapping
-from mo_testing.fuzzytestcase import FuzzyTestCase
+from mo_testing.fuzzytestcase import FuzzyTestCase, add_error_reporting
 
 from mo_kwargs import override
 
 kw = {"required": 1, "optional": 2}
 
 
+@add_error_reporting
 class TestOverride(FuzzyTestCase):
     def test_basic(self):
         result = basic(required=0)
