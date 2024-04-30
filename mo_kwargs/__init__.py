@@ -52,7 +52,7 @@ def override(kwargs=None):
                     raise e
                 else:
                     get_logger().error(
-                        "Problem calling {{func_name}}:  Expecting parameter {{missing}}, given {{given}}",
+                        "Problem calling {func_name}:  Expecting parameter {missing}, given {given}",
                         func_name=func_name,
                         missing=missing,
                         given=given,
