@@ -2,4 +2,3 @@ mo-testing>=8.610.24119
 mo-times>=5.609.24119
 mo-json>=6.609.24119
 mo-threads>=6.610.24119
-mo-logs>=8.608.24119
