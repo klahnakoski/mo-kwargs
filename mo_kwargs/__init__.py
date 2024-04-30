@@ -13,7 +13,6 @@ import sys
 from functools import update_wrapper
 
 from mo_dots import get_logger, is_data, to_data, is_many
-from mo_logs.strings import expand_template
 
 KWARGS = str("kwargs")
 
@@ -52,16 +51,6 @@ def override(kwargs=None):
                 if not missing:
                     raise e
                 else:
-                    example = expand_template(
-                        "Problem calling {func_name}:  Expecting parameter {missing}, given {given}",
-                        dict(func_name=func_name,
-                        missing=missing,
-                        given=given,
-                        stack_depth=2,
-                        cause=e)
-                    )
-
-
                     get_logger().error(
                         "Problem calling {func_name}:  Expecting parameter {missing}, given {given}",
                         func_name=func_name,
