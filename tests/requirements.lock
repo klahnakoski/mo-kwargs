@@ -2,7 +2,7 @@
 # pip install --no-deps -r tests/requirements.lock
 hjson==3.1.0
 mo-collections==5.608.24119
-mo-dots==10.622.24125
+mo-dots==10.623.24125
 mo-future==7.584.24095
 mo-imports==7.584.24095
 mo-json==6.609.24119
