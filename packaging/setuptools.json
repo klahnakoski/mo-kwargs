@@ -10,15 +10,16 @@
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
-        "Programming Language :: Python :: 3.12"
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13"
     ],
     "description": "Object destructuring of function parameters for Python!",
     "extras_require": {"tests": [
-        "mo-testing>=8.623.24125",   "mo-times>=5.623.24125",    "mo-json>=6.624.24125",
-        "mo-threads>=6.623.24125"
+        "mo-testing>=8.644.24152",   "mo-times>=5.632.24139",    "mo-json>=6.637.24140",
+        "mo-threads>=6.634.24139"
     ]},
     "include_package_data": true,
-    "install_requires": ["mo-dots==10.647.24166"],
+    "install_requires": ["mo-dots==10.659.25005"],
     "license": "MPL 2.0",
     "long_description": {
         "$concat": [
@@ -30,7 +31,7 @@
             "[![PyPI Latest Release](https://img.shields.io/pypi/v/mo-kwargs.svg)](https://pypi.org/project/mo-kwargs/)",
             " [![Build Status](https://github.com/klahnakoski/mo-kwargs/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/klahnakoski/mo-kwargs/actions/workflows/build.yml)",
             " [![Coverage Status](https://coveralls.io/repos/github/klahnakoski/mo-kwargs/badge.svg?branch=dev)](https://coveralls.io/github/klahnakoski/mo-kwargs?branch=dev)",
-            "[![Downloads](https://pepy.tech/badge/mo-kwargs)](https://pepy.tech/project/mo-kwargs)",
+            "[![Downloads](https://static.pepy.tech/badge/mo-kwargs)](https://pepy.tech/project/mo-kwargs)",
             "",
             "",
             "## Motivation",
@@ -139,6 +140,6 @@
     "name": "mo-kwargs",
     "packages": ["mo_kwargs"],
     "url": "https://github.com/klahnakoski/mo-kwargs",
-    "version": "7.647.24166",
+    "version": "7.659.25005",
     "zip_safe": false
 }
