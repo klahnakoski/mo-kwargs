@@ -6,7 +6,7 @@ Object destructuring of function parameters for Python!
 [![PyPI Latest Release](https://img.shields.io/pypi/v/mo-kwargs.svg)](https://pypi.org/project/mo-kwargs/)
  [![Build Status](https://github.com/klahnakoski/mo-kwargs/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/klahnakoski/mo-kwargs/actions/workflows/build.yml)
  [![Coverage Status](https://coveralls.io/repos/github/klahnakoski/mo-kwargs/badge.svg?branch=dev)](https://coveralls.io/github/klahnakoski/mo-kwargs?branch=dev)
-[![Downloads](https://pepy.tech/badge/mo-kwargs)](https://pepy.tech/project/mo-kwargs)
+[![Downloads](https://static.pepy.tech/badge/mo-kwargs)](https://pepy.tech/project/mo-kwargs)
 
 
 ## Motivation
