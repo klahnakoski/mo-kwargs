@@ -6,7 +6,7 @@ setup(
     author_email='kyle@lahnakoski.com',
     classifiers=["Development Status :: 4 - Beta","Topic :: Software Development :: Libraries","Topic :: Software Development :: Libraries :: Python Modules","License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)","Programming Language :: Python :: 3.8","Programming Language :: Python :: 3.9","Programming Language :: Python :: 3.10","Programming Language :: Python :: 3.11","Programming Language :: Python :: 3.12","Programming Language :: Python :: 3.13","Programming Language :: Python :: 3.14","Programming Language :: Python :: 3.15"],
     description='Object destructuring of function parameters for Python!',
-    extras_require={"tests":["mo-testing>=8.684.25166","mo-times>=5.682.25104","mo-json>=6.682.25104","mo-threads>=6.682.25104"]},
+    extras_require={"tests":["mo-testing>=8.685.25166","mo-times>=5.685.25166","mo-json>=6.686.25166","mo-threads>=6.698.25331"]},
     include_package_data=True,
     install_requires=["mo-dots==10.685.25166"],
     license='MPL 2.0',
@@ -15,6 +15,6 @@ setup(
     name='mo-kwargs',
     packages=["mo_kwargs"],
     url='https://github.com/klahnakoski/mo-kwargs',
-    version='8.700.26061',
+    version='8.702.26061',
     zip_safe=False
 )

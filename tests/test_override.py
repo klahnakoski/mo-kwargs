@@ -324,6 +324,12 @@ class TestOverride(FuzzyTestCase):
         result = TestObject(required=0).complex(1, 2, c=3, d=4)
         self.assertEqual(result, {"a": 1, "b": 2, "c": 3, "d": 4})
 
+    def test_kwdefaults_set_correctly(self):
+        self.assertEqual(TestObject(1).kw_default(a=3), {'b': 1, 'c': 2})
+
+    def test_self_kwdefaults_set_correctly(self):
+        self.assertEqual(kw_default(a=3), {'b': 1, 'c': 2})
+
 
 @override
 def basic(required, optional=3):
@@ -364,6 +370,11 @@ def oops_self(self, kwargs):
 def oops_kwargs(self, kwargs):
     required()  # SHOULD RAISE TypeError
 
+@override
+def kw_default(*, a, b=1, c=2, kwargs=None):
+    return kwargs
+
+
 
 class TestObject(object):
     @override
@@ -391,4 +402,8 @@ class TestObject(object):
 
     @override
     def complex(self, a, b, *, c=None, d=None, kwargs=None):
+        return kwargs
+
+    @override
+    def kw_default(self, *, a, b=1, c=2, kwargs=None):
         return kwargs

@@ -38,6 +38,10 @@ def override(kwargs=None):
         known_kwargs = get_function_arguments(func)[: func.__code__.co_argcount + func.__code__.co_kwonlyargcount]
         known_args = known_kwargs[: func.__code__.co_argcount]
         defaults = {k: v for k, v in zip(reversed(known_kwargs), reversed(func.__defaults__ or [])) if v is not None}
+        if func.__kwdefaults__:
+            for k, v in (func.__kwdefaults__ or {}).items():
+                if k!=kwargs:
+                    defaults[k]=v
 
         def raise_error(e, a, k):
             packed = k.copy()
