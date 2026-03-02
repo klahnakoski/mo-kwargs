@@ -132,7 +132,7 @@ def override(kwargs=None):
         for a in args:
             for k, v in a.items():
                 settings[str(k)] = v
-        settings[kwargs] = to_data(settings)
+        settings[kwargs] = to_data({**settings})
 
         if params and params[0] in ("self", "cls"):
             s = settings.get(params[0])

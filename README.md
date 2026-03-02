@@ -9,6 +9,9 @@ Object destructuring of function parameters for Python!
 [![Downloads](https://static.pepy.tech/badge/mo-kwargs)](https://pepy.tech/project/mo-kwargs)
 
 
+[See changes](https://github.com/klahnakoski/mo-kwargs#version-changes-features)
+
+
 ## Motivation
 
 Javascript has [object destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#object_destructuring), and it can be used for function parameters. This has a couple of benefts over Python's keyword arguments:
@@ -107,3 +110,10 @@ Your method can accept `kwargs` as a parameter. If it does, ensure it defaults t
         >>> login(**creds)
         ekyle
         9000
+
+
+## Version Changes, Features
+
+### Version 8
+
+*March 2026* - the `kwargs` parameter no longer incudes itself
