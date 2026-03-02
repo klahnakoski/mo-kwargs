@@ -116,4 +116,7 @@ Your method can accept `kwargs` as a parameter. If it does, ensure it defaults t
 
 ### Version 8
 
-*March 2026* - the `kwargs` parameter no longer incudes itself
+*March 2026*
+
+* the `kwargs` parameter no longer incudes itself, and no longer includes first argument `self`, `cls` of instance and class methods.
+* the variable keyword argument (`**`) includes all parameters not listed in the method signature. (this was broken in previous versions).
