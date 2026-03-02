@@ -54,7 +54,7 @@ class TestOverride(FuzzyTestCase):
     def test_no_param_kwargs(self):
         result = no_param(kwargs=kw)
         self.assertIsInstance(result, Mapping)
-        self.assertEqual(len(result.keys()), 0)
+        self.assertEqual(len(result.keys()), 2)
 
     def test_nothing_w_nothing(self):
         result = nothing()
@@ -136,7 +136,7 @@ class TestOverride(FuzzyTestCase):
 
     def test_kwargs_w_optional(self):
         result = kwargs(optional=2)
-        self.assertEqual(len(result["kwargs_"]), 0)
+        self.assertEqual(len(result["kwargs_"]), 1)
         self.assertEqual(len(result["kwargs"]), 1)
         self.assertEqual(result["kwargs"]["optional"], 2)
 
@@ -155,16 +155,16 @@ class TestOverride(FuzzyTestCase):
     def test_kwargs_w_optional_and_kwargs(self):
         result = kwargs(optional=2, kwargs=kw)
         self.assertEqual(len(result), 2)
-        self.assertEqual(len(result["kwargs"]), 3)
+        self.assertEqual(len(result["kwargs"]), 2)
         self.assertEqual(result["kwargs"]["optional"], 2)
         self.assertEqual(result["kwargs"]["required"], 1)
 
     def test_kwargs_w_both_and_kwargs(self):
         result = kwargs(required=1, optional=2, kwargs=kw)
         self.assertEqual(len(result), 2)
-        self.assertEqual(len(result["kwargs_"]), 0)
-        self.assertEqual(len(result["kwargs"]), 3)
-        self.assertEqual(len(result["kwargs"]["kwargs"]), 2)
+        self.assertEqual(len(result["kwargs_"]), 2)
+        self.assertEqual(len(result["kwargs"]), 2)
+        self.assertEqual(result["kwargs"]["kwargs"], None)
 
     def test_object_not_enough_parameters(self):
         with self.assertRaises('Expecting parameter ["required"], given ["self", "optional", "kwargs"]'):
@@ -200,8 +200,8 @@ class TestOverride(FuzzyTestCase):
 
     def test_object_nothing_w_nothing(self):
         result = TestObject(required=0).nothing()
-        self.assertEqual(len(result), 1)
-        self.assertTrue(result["self"])
+        self.assertEqual(len(result), 0)
+        self.assertEqual(result["self"], None)
         self.assertTrue(is_missing(result["kwargs"]))
 
     def test_object_nothing_w_require(self):
@@ -270,7 +270,7 @@ class TestOverride(FuzzyTestCase):
         result = TestObject(required=0).kwargs_()
         self.assertEqual(len(result), 2)
         self.assertEqual(len(result["kwargs_"]), 0)
-        self.assertEqual(len(result["kwargs"]), 1)
+        self.assertEqual(len(result["kwargs"]), 0)
         self.assertEqual(result["kwargs"]["kwargs"], None)
 
     def test_object_kwargs_w_require(self):
@@ -279,8 +279,8 @@ class TestOverride(FuzzyTestCase):
 
     def test_object_kwargs_w_optional(self):
         result = TestObject(required=0).kwargs_(optional=2)
-        self.assertEqual(len(result["kwargs_"]), 0)
-        self.assertEqual(len(result["kwargs"]), 2)
+        self.assertEqual(len(result["kwargs_"]), 1)
+        self.assertEqual(len(result["kwargs"]), 1)
         self.assertEqual(result["kwargs"]["optional"], 2)
 
     def test_object_kwargs_w_both(self):
@@ -290,9 +290,9 @@ class TestOverride(FuzzyTestCase):
     def test_object_kwargs_w_required_and_kwargs(self):
         result = TestObject(required=0).kwargs_(kwargs=kw)
         self.assertEqual(len(result), 2)
-        self.assertEqual(len(result["kwargs"]), 4)
-        self.assertEqual(len(result["kwargs"]["kwargs"]), 2)
-        self.assertEqual(len(result["kwargs_"]), 0)
+        self.assertEqual(len(result["kwargs"]), 2)
+        self.assertEqual(result["kwargs"]["kwargs"], None)
+        self.assertEqual(len(result["kwargs_"]), 2)
         self.assertEqual(result, {"kwargs": {"required": 1, "optional": 2}})
 
     def test_object_kwargs_w_require_and_kwargs(self):
@@ -302,17 +302,17 @@ class TestOverride(FuzzyTestCase):
     def test_object_kwargs_w_optional_and_kwargs(self):
         result = TestObject(required=0).kwargs_(optional=2, kwargs=kw)
         self.assertEqual(len(result), 2)
-        self.assertEqual(len(result["kwargs"]), 4)
-        self.assertEqual(len(result["kwargs"]["kwargs"]), 2)
-        self.assertEqual(len(result["kwargs_"]), 0)
+        self.assertEqual(len(result["kwargs"]), 2)
+        self.assertEqual(result["kwargs"]["kwargs"], None)
+        self.assertEqual(len(result["kwargs_"]), 2)
         self.assertEqual(result, {"kwargs": {"optional": 2}})
 
     def test_object_kwargs_w_both_and_kwargs(self):
         result = TestObject(required=0).kwargs_(required=1, optional=2, kwargs=kw)
         self.assertEqual(len(result), 2)
-        self.assertEqual(len(result["kwargs_"]), 0)
-        self.assertEqual(len(result["kwargs"]), 4)
-        self.assertEqual(len(result["kwargs"]["kwargs"]), 2)
+        self.assertEqual(len(result["kwargs_"]), 2)
+        self.assertEqual(len(result["kwargs"]), 2)
+        self.assertEqual(result["kwargs"]["kwargs"], None)
 
     def test_deeper_call_raises_type_error(self):
         self.assertRaises("oops", oops)
@@ -325,10 +325,12 @@ class TestOverride(FuzzyTestCase):
         self.assertEqual(result, {"a": 1, "b": 2, "c": 3, "d": 4})
 
     def test_kwdefaults_set_correctly(self):
-        self.assertEqual(TestObject(1).kw_default(a=3), {'b': 1, 'c': 2})
+        self.assertEqual(TestObject(1).kw_default(a=3), {'a':3, 'b': 1, 'c': 2})
+        self.assertEqual({'b': 1, 'c': 2, 'a':3}, TestObject(1).kw_default(a=3))
 
     def test_self_kwdefaults_set_correctly(self):
         self.assertEqual(kw_default(a=3), {'b': 1, 'c': 2})
+        self.assertEqual( {'b': 1, 'c': 2, 'a':3},kw_default(a=3))
 
 
 @override
