@@ -17,7 +17,7 @@
     ],
     "description": "Object destructuring of function parameters for Python!",
     "extras_require": {"tests": [
-        "mo-testing>=8.685.25166",   "mo-times>=5.685.25166",    "mo-json>=6.686.25166",
+        "mo-testing>=8.685.25166",   "mo-times>=5.685.25166",    "mo-json>=6.701.26061",
         "mo-threads>=6.698.25331"
     ]},
     "include_package_data": true,
@@ -143,7 +143,10 @@
             "",
             "### Version 8",
             "",
-            "*March 2026* - the `kwargs` parameter no longer incudes itself",
+            "*March 2026*",
+            "",
+            "* the `kwargs` parameter no longer incudes itself, and no longer includes first argument `self`, `cls` of instance and class methods.",
+            "* the variable keyword argument (`**`) includes all parameters not listed in the method signature. (this was broken in previous versions).",
             ""
         ],
         "separator": "\n"
@@ -152,6 +155,6 @@
     "name": "mo-kwargs",
     "packages": ["mo_kwargs"],
     "url": "https://github.com/klahnakoski/mo-kwargs",
-    "version": "8.702.26061",
+    "version": "8.703.26061",
     "zip_safe": false
 }
